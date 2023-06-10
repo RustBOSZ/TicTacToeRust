@@ -1,0 +1,96 @@
+:root {
+    --bg-dark: #242423;
+    --bg-light: #333533;
+    --fg-light: #E8EDDF;
+    --callout: rgb(255, 255, 102);
+    --callout-dark: #101010;
+}
+
+* {
+    font-size: 14px;
+}
+
+html, body, main {
+    background-color: var(--bg-dark);
+    color: #fff;
+    font-family: "Inter", Arial, Helvetica, sans-serif, "Noto Color Emoji";
+    font-weight: 400;
+    text-shadow: rgb(77, 81, 86) 0px 0px 0px;
+    height: 100%;
+}
+
+main {
+    display: flex;
+}
+
+#sidebar {
+    flex: 3 30%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    background-color: var(--bg-light);
+}
+
+#content {
+    flex: 7 100%;
+    overflow: auto;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+#board {
+
+    width: 60%;
+    height: 60%;
+    display: flex;                       /* establish flex container */
+    flex-wrap: wrap;                     /* enable flex items to wrap */
+    justify-content: space-around;
+
+}
+
+.cell {
+
+    width: 33%;                     /* don't grow, don't shrink, width */
+    height: 33%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    color: var(--bg-dark);
+
+    font-size: 10rem;
+    background-color: #999;
+}
+
+#status,#round{
+    padding: 5px 10px;
+    text-align: center;
+    font-size: 12px;
+}
+
+#status.pending::before {
+    content: "status: connected";
+}
+
+#status.pending {
+    background-color: yellow;
+    color: #000;
+}
+
+#status.connected::before {
+    content: "status: connected";
+}
+
+#status.connected {
+    background-color: green;
+    color: #fff;
+}
+
+#status.reconnecting::before {
+    content: "status: reconnecting";
+}
+
+#status.reconnecting {
+    background-color: red;
+    color: #fff;
+}
