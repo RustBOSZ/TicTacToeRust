@@ -82,27 +82,6 @@ function setChar(numX,numO) {
     }
 }
 
-// static public ArrayList<Boolean> toBooleanList(int res){
-//
-//     ArrayList<Boolean> tmp = new ArrayList<>();
-//     int ile = 0;
-//
-//     while (Math.pow(2,ile) <= res){
-//         ile++;
-//     }
-//     for (int i = 0; i < ile; i++) {
-//         if((res & (int) Math.pow(2,i)) == Math.pow(2,i)){
-//             tmp.add(true);
-//         }else {
-//             tmp.add(false);
-//         }
-//     }
-//     return tmp;
-// }
-
-// static public Integer add(Integer res,Integer index){
-//     return ((res & (int) Math.pow(2,index)) != Math.pow(2,index)) ? (int)(res + Math.pow(2,index)) : res;
-// }
 
 function sAdd(res,num) {
 
