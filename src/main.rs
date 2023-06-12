@@ -100,12 +100,14 @@ fn post(mut form: Form<Message>, queue: &State<Sender<MainState>>) {
         for win in vec![7, 56, 448, 73, 146, 292, 273, 84] {
             if (x & win ) == win {
                 o = -1;
+                x = win;
                 p = true;
                 println!("X:{} win:{}",x,win);
                 break;
             }
             else if (o & win) == win{
                 x = -1;
+                o = win;
                 p = true;
                 println!("O: {} win: {}",o,win);
                 break;

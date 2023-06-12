@@ -33,10 +33,13 @@ function subscribe(uri) {
             setChar(msg.BX<0?0:msg.BX,msg.BO<0?0:msg.BO)
             if (msg.BO<0){
                 roundDiv.innerText = "won : X";
+                setColor(true)
             }else if (msg.BX<0){
                 roundDiv.innerText = "won : O";
+                setColor(true)
             }else{
                 roundDiv.innerText = "round : " + (msg.prime ? "X" : "O");
+                setColor(false)
             }
 
         });
@@ -80,8 +83,33 @@ function setChar(numX,numO) {
             board.item(i).innerText = "O";
         }
     }
+
 }
 
+function setColor(color) {
+
+  if(color){
+
+      for (let i = 0; i < 9; i++) {
+          if (board.item(i).innerText !== ""){
+
+              board.item(i).style.backgroundColor = "#00FF00"
+              console.log("t")
+
+          }
+
+
+      }
+
+  }else{
+      for (let i = 0; i < 9; i++) {
+
+              board.item(i).style.backgroundColor = "#999999"
+
+      }
+  }
+
+}
 
 function sAdd(res,num) {
 
