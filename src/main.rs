@@ -23,15 +23,7 @@ struct Message {
 
 }
 
-fn sAdd(res:i32, num: u32) -> i32 {
 
-   if (res & 2_i32.pow(num)) != 2_i32.pow(num) {
-       return  res + 2_i32.pow(num);
-    }else {
-       return  res;
-    }
-
-}
 
 #[derive(Debug, Clone,Copy, FromForm, Serialize, Deserialize)]
 #[serde(crate = "rocket::serde")]
@@ -45,8 +37,19 @@ static mut x: i32 = 0;
 static mut o: i32 = 0;
 static mut p: bool = true;
 
-/// Returns an infinite stream of server-sent events. Each event is a message
-/// pulled from a broadcast queue sent by the post handler.
+
+fn sAdd(res:i32, num: u32 ,resB : i32) -> i32 {
+
+    if ((res & 2_i32.pow(num)) != 2_i32.pow(num)) && ((resB & 2_i32.pow(num)) != 2_i32.pow(num)) {
+        unsafe { p = !p; }
+        return  res + 2_i32.pow(num);
+    }else {
+        return  res;
+    }
+
+}
+
+
 #[get("/events")]
 async fn events(queue: &State<Sender<MainState>>, mut end: Shutdown) -> EventStream![] {
     let mut rx = queue.subscribe();
@@ -89,11 +92,11 @@ fn post(mut form: Form<Message>, queue: &State<Sender<MainState>>) {
         }else {
             if form.player == p {
                 if form.player {
-                    x = sAdd(x,form.num as u32);
+                    x = sAdd(x,form.num as u32,o);
                 }else {
-                    o = sAdd(o, form.num as u32);
+                    o = sAdd(o, form.num as u32,x);
                 }
-                p = !p;
+                // p = !p;
             }
         }
 
